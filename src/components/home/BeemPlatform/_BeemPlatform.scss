@@ -1,0 +1,112 @@
+.beem_platform_section {
+    padding: 70px 0;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+
+    .section_title {
+        white-space: pre-line;
+    }
+
+    .beem_platform_wrapper {
+        min-height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 30px;
+        overflow: hidden;
+        background: url("/images/beemPlatform_bg.png") no-repeat center;
+        background-size: cover;
+        position: relative;
+        border: 1px solid #375cc12d ;
+        
+        .beem_platform_content {
+            position: relative;
+            z-index: 5;
+
+
+
+
+        }
+
+        .beem_avatar {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            position: absolute;
+            z-index: 5;
+
+            &.avatar-innovative  {
+                top: 14%;
+                left: 10%;
+                .avatar_name {
+                    background: #2E70E1 ;
+                }
+            }
+            &.avatar-transparent   {
+                top: 36%;
+                right: 8%;
+                .avatar_name {
+                    background: #73D3DF ;
+                }
+            }
+            &.avatar-reliable   {
+                bottom: 21%;
+                left: 4%;
+                .avatar_name {
+                    background: #6766CE ;
+                }
+            }
+            &.avatar-enabler   {
+                left: 40%;
+                bottom: 8%;
+                .avatar_name {
+                    background: #E57253 ;
+                }
+            }
+            &.avatar-intelligent    {
+                bottom: 16%;
+                right: 14%;
+                .avatar_name {
+                    background: #2F6FDF ;
+                }
+            }
+
+            .avatar_image {
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            .avatar_name {
+                font-size: 16px;
+                padding: 8px 0 13px 0;
+                display: flex;
+                align-items: center;
+                width: 120px;
+                background-color: var(--blue);
+                color: #fff;
+                border-radius: 20px;
+                text-align: center;
+                justify-content: center;
+                
+            }   
+
+        }
+
+        &::before {
+            content: '';
+            width: 95%;
+            height: 300px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: url("/images/beem.svg") no-repeat center;
+            background-size: cover;
+            background-position: top;
+        }
+    }
+
+
+}
+

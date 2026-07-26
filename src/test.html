@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exact Curved Active Tab</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* الحاوية الرئيسية للبار */
+    .nav-wrapper {
+      position: relative;
+      width: 850px;
+      height: 130px;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    /* خلفية البار بـ SVG مسؤولة عن رسم الحدود والكيرفات بالكامل */
+    .nav-svg-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* العنصر المتحرك للكيرف والدايرة النشطة */
+    .active-notch-group {
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* طبقة التابس والتفاعلات */
+    .nav-tabs {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 85px; /* يطابق ارتفاع البار البيضاوي */
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      list-style: none;
+      padding: 0 35px;
+    }
+
+    .tab-item {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 75px;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    /* الأيقونة والنص داخل الحاوية */
+    .tab-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .tab-item .icon {
+      font-size: 24px;
+      transition: color 0.3s ease;
+    }
+
+    /* العنوان داخل الدايرة للتاب النشط */
+    .tab-label {
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.1;
+      opacity: 0;
+      max-height: 0;
+      transform: translateY(-5px);
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 2px;
+    }
+
+    /* السهم الصغير تحت الكلمة */
+    .tab-label::after {
+      content: '';
+      margin-top: 2px;
+      border-left: 3.5px solid transparent;
+      border-right: 3.5px solid transparent;
+      border-top: 4.5px solid currentColor;
+    }
+
+    /* --- حالة التفعيل (Active Tab State) --- */
+
+    /* رفع المحتوى (الكلمة والأيقونة) ليدخلوا بداخل الدايرة البارزة */
+    .tab-item.active .tab-content {
+      transform: translateY(-26px);
+    }
+
+    .tab-item.active .tab-label {
+      opacity: 1;
+      max-height: 30px;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav-wrapper">
+    <!-- خلفية البار بـ SVG تفاعلي للدايرة والكيرفات المقعرة -->
+    <svg class="nav-svg-bg" viewBox="0 0 850 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+      
+      <!-- 1. جسم البار البيضاوي الأساسي -->
+      <path d="M 40,45 L 810,45 A 40,40 0 0,1 850,85 L 850,85 A 40,40 0 0,1 810,125 L 40,125 A 40,40 0 0,1 0,85 L 0,85 A 40,40 0 0,1 40,45 Z" 
+            fill="#F2F4F8" stroke="#DCE4F0" stroke-width="1.5" />
+
+      <!-- 2. الجزء المترجم والبارز (الكيرفات المقعرة والدايرة البيضاء) -->
+      <g id="activeNotchGroup" class="active-notch-group">
+        <!-- مسح خلفية البار تحت الدايرة لتكون مفرغة ونظيفة -->
+        <circle cx="85" cy="45" r="41" fill="#F2F4F8" />
+
+        <!-- الكيرف المقعر الأيمن والأيسر للربط مع حد البار العلوي -->
+        <path d="M 35,45 C 44,45 46,38 48,32 C 55,10 70,3 85,3 C 100,3 115,10 122,32 C 124,38 126,45 135,45 Z" 
+              fill="#FFFFFF" />
+        
+        <!-- الدايرة البيضاء المكتملة ذات الحد الخارجي (Stroke) المتصل بالبار -->
+        <circle cx="85" cy="45" r="41" fill="#FFFFFF" stroke="#DCE4F0" stroke-width="1.5" />
+
+        <!-- غطاء سفلي بسيط لإدماج أسفل الدايرة داخل جسم البار بيسر -->
+        <path d="M 46,46 L 124,46 A 41,41 0 0,1 46,46 Z" fill="#FFFFFF" />
+      </g>
+    </svg>
+
+    <!-- قائمة التابس الديناميكية -->
+    <ul class="nav-tabs" id="navTabs"></ul>
+  </div>
+
+  <script>
+    // البيانات الديناميكية
+    const tabsData = [
+      { id: 1, title: "السحابة", icon: "fa-solid fa-cloud-arrow-up", color: "#4f96f6" },
+      { id: 2, title: "المحادثات", icon: "fa-solid fa-comments", color: "#eab308" },
+      { id: 3, title: "الفيديوهات", icon: "fa-solid fa-video", color: "#635bff" },
+      { id: 4, title: "المهام", icon: "fa-solid fa-square-check", color: "#e11d48" },
+      { id: 5, title: "الهوية", icon: "fa-solid fa-id-card", color: "#10b981" },
+      { id: 6, title: "التطبيقات", icon: "fa-solid fa-border-all", color: "#2563eb", active: true },
+      { id: 7, title: "التقويم", icon: "fa-solid fa-calendar-days", color: "#f97316" },
+      { id: 8, title: "المستندات", icon: "fa-solid fa-folder", color: "#14b8a6" }
+    ];
+
+    const navTabsContainer = document.getElementById("navTabs");
+    const activeNotchGroup = document.getElementById("activeNotchGroup");
+
+    // مركز أول تاب افتراضي لضبط إحداثيات الـ SVG (مركز الدايرة في الـ Path هو cx="85")
+    const INITIAL_CX = 85; 
+
+    function renderTabs() {
+      navTabsContainer.innerHTML = "";
+
+      tabsData.forEach((tab) => {
+        const li = document.createElement("li");
+        li.className = `tab-item ${tab.active ? "active" : ""}`;
+
+        li.innerHTML = `
+          <div class="tab-content">
+            <span class="tab-label" style="color: ${tab.color}">${tab.title}</span>
+            <i class="${tab.icon} icon" style="color: ${tab.color}"></i>
+          </div>
+        `;
+
+        li.addEventListener("click", () => {
+          tabsData.forEach(t => t.active = (t.id === tab.id));
+          renderTabs();
+          moveNotchToElement(li);
+        });
+
+        navTabsContainer.appendChild(li);
+
+        if (tab.active) {
+          requestAnimationFrame(() => moveNotchToElement(li));
+        }
+      });
+    }
+
+    // تحريك مجموعة الدايرة والكيرف أفقياً لتتوسط التاب المحددة بالضبط
+    function moveNotchToElement(element) {
+      const navRect = navTabsContainer.getBoundingClientRect();
+      const tabRect = element.getBoundingClientRect();
+
+      // حساب منتصف العنصر المختار بالنسبة لحاوية التابس
+      const tabCenterX = (tabRect.left + tabRect.width / 2) - navRect.left;
+      
+      // فرق الحركة من النقطة الأصلية (85px)
+      const translateX = tabCenterX - INITIAL_CX;
+
+      activeNotchGroup.style.transform = `translateX(${translateX}px)`;
+    }
+
+    renderTabs();
+
+    window.addEventListener("resize", () => {
+      const activeLi = document.querySelector(".tab-item.active");
+      if (activeLi) moveNotchToElement(activeLi);
+    });
+  </script>
+</body>
+</html>

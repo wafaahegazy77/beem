@@ -1,0 +1,34 @@
+.navbar {
+    padding: 1.5rem 1rem ;
+    z-index: 99;
+    
+    &.homeNav {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+
+    }
+    .logo {
+        height: 35px;
+        object-fit: contain;
+    }
+
+    .nav-link {
+        color: #161B26;
+        margin: 0 15px ;
+        font-weight: 500;
+        &:hover {
+            color: var(--blue);
+        }
+    }
+
+    .language_switcher {
+        background-color: transparent;
+        border: none;
+        i {
+            margin-inline-end: 5px;
+        }
+    }
+
+}
