@@ -109,4 +109,14 @@
 
 
 }
-
+@media screen and (max-width: 991px) {
+    .beem_platform_section .beem_platform_wrapper {
+        min-height: 300px;
+    }
+    .beem_platform_section .beem_platform_wrapper .beem_avatar {
+        display: none;
+    }
+    .beem_platform_section .beem_platform_wrapper:before {
+        height: 100px;
+    }
+}

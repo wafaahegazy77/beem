@@ -104,3 +104,12 @@
     object-fit: cover;
     inset: 0;
 }
+
+
+@media screen and (max-width: 991px) {
+ 
+    .order_md_1 {
+        order: -1;
+    }
+
+}

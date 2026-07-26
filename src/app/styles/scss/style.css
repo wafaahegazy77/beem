@@ -2781,4 +2781,10 @@ input:focus {
   height: 100%;
   object-fit: cover;
   inset: 0;
+}
+
+@media screen and (max-width: 991px) {
+  .order_md_1 {
+    order: -1;
+  }
 }/*# sourceMappingURL=style.css.map */

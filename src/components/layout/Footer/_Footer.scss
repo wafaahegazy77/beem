@@ -117,5 +117,34 @@
 
     }
 
+    .foot_card_grid {
+        padding-inline-end: 3vw;
+    }
+
+}
+
+@media screen and (max-width: 991px) {
+    .footer_section .footer_cta .cta_buttons {
+        justify-content: start !important;
+        margin-top: 20px;
+    }
+
+    .footer_section .footer_cta .cta_buttons .butn {
+        padding: 12.5px 20px;
+    }
+
+    .footer_section .footer_content .footer_card {
+        margin-bottom: 25px;
+        height: calc(100% - 25px);
+    }
+
+    .footer_section .footer_content .footer_top .footer_social {
+        justify-content: center !important;
+        margin-top: 15px;
+    }
+
+    .footer_column {
+        margin-bottom: 35px;
+    }
 
 }

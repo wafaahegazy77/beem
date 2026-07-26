@@ -40,7 +40,7 @@ const Footer = async () => {
 
                 <div className="footer_content">
                     <div className="row">
-                        <div className="col-lg-4 ps-lg-5">
+                        <div className="col-lg-4 foot_card_grid">
                             <div className="footer_card">
 
                                 <Link href="/" className="footer_logo d-block">
@@ -48,14 +48,14 @@ const Footer = async () => {
                                 </Link>
 
                                 <img src="/images/iso.svg" className="iso_img" alt="ISO Certifications" />
-                                
+
                                 <p className="copyright">
                                     2026 © Beem Digital Ltd.
                                 </p>
 
                             </div>
                         </div>
-                        <div className="col-lg-8">
+                        <div className="col-lg-8 order_md_1">
                             <div className="footer_top pb-4 mb-4 border-bottom">
 
                                 <div className="row align-items-center justify-content-between ">
