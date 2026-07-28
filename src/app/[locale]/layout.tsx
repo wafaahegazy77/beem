@@ -10,6 +10,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
+import MotionProvider from "@/components/MotionProvider";
 
 export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }));
@@ -42,7 +43,9 @@ export default async function RootLayout({
             <body suppressHydrationWarning>
                 <NextIntlClientProvider messages={messages}>
                     <Providers>
-                        <LenisProvider>{children}</LenisProvider>
+                        <MotionProvider>
+                            <LenisProvider>{children}</LenisProvider>
+                        </MotionProvider>
                     </Providers>
                 </NextIntlClientProvider>
                 <BootstrapClient />

@@ -34,7 +34,7 @@ const WhyBeem = async () => {
                             key={item.title}
                             className="col-lg-4 col-md-6 mb-4"
                         >
-                            <div className="why_beem_card">
+                            <div className="why_beem_card ">
 
                                 <div className="image">
                                     <img

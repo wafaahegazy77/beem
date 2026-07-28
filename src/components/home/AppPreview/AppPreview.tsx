@@ -22,9 +22,8 @@ const screens = [
 
 const AppPreview = () => {
     return (
-        <section className="app_preview_section">
+        <section className="app_preview_section" >
             <div className="">
-
                 <Swiper
                     className="app_preview_slider"
                     modules={[Autoplay]}
@@ -32,7 +31,7 @@ const AppPreview = () => {
                     centeredSlides
                     spaceBetween={10}
                     autoplay={{
-                        delay: 1,
+                        delay: 0,
                         disableOnInteraction: false,
                         pauseOnMouseEnter: false,
                     }}
@@ -57,17 +56,16 @@ const AppPreview = () => {
                 >
                     {screens.map((image, index) => (
                         <SwiperSlide key={index}>
-                            <div className="phone_card">
-                                <img
-                                    src={image}
-                                    alt=""
-                                />
-                            </div>
+                                <div className="phone_card">
+                                    <img
+                                        src={image}
+                                        alt=""
+                                    />
+                                </div>
                         </SwiperSlide>
                     ))}
 
                 </Swiper>
-
             </div>
         </section>
     );
