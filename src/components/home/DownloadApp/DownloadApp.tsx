@@ -3,6 +3,8 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { getHomeData } from "@/lib/api/home";
 import Image from "next/image";
 import "./_DownloadApp.scss";
+import Reveal from "@/components/animations/Reveal";
+
 
 const DownloadApp = async () => {
     const locale = await getLocale();
@@ -20,14 +22,16 @@ const DownloadApp = async () => {
                     <div className="row align-items-center">
                         <div className="col-lg-6">
                             <div className="download_content py-3">
-
-                                <h2 className="fw-bold text-white mb-3 fsz-35">
-                                    {t("title")}
-                                </h2>
-
-                                <p className="fsz-20 text-white">
-                                    {t("description")}
-                                </p>
+                                <Reveal animation="fade-up" >
+                                    <h2 className="fw-bold text-white mb-3 fsz-35">
+                                        {t("title")}
+                                    </h2>
+                                </Reveal>
+                                <Reveal animation="fade-down" >
+                                    <p className="fsz-20 text-white">
+                                        {t("description")}
+                                    </p>
+                                </Reveal>
 
                             </div>
                         </div>
@@ -35,28 +39,30 @@ const DownloadApp = async () => {
                         <div className="col-lg-6">
                             <div className="row g-3">
 
-                                {downloadApp.stores.map((store) => (
+                                {downloadApp.stores.map((store, index) => (
                                     <div
                                         key={store.id}
                                         className="col-6 col-sm-3"
                                     >
-                                        <Link
-                                            href={store.url}
-                                            className="download_store_card"
-                                        >
-                                            <div className="img_box">
-                                                <Image
-                                                    className="icon"
-                                                    src={store.icon}
-                                                    alt={store.name}
-                                                    width={48}
-                                                    height={48}
-                                                />
-                                            </div>
-                                            <span className="name">
-                                                {store.name}
-                                            </span>
-                                        </Link>
+                                        <Reveal animation="flip-left" delay={index * 0.2} >
+                                            <Link
+                                                href={store.url}
+                                                className="download_store_card"
+                                            >
+                                                <div className="img_box">
+                                                    <Image
+                                                        className="icon"
+                                                        src={store.icon}
+                                                        alt={store.name}
+                                                        width={48}
+                                                        height={48}
+                                                    />
+                                                </div>
+                                                <span className="name">
+                                                    {store.name}
+                                                </span>
+                                            </Link>
+                                        </Reveal>
                                     </div>
                                 ))}
 

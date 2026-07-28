@@ -2783,6 +2783,14 @@ input:focus {
   inset: 0;
 }
 
+@keyframes floatingX {
+  0% {
+    transform: translateY(10%);
+  }
+  100% {
+    transform: translateY(-10%);
+  }
+}
 @media screen and (max-width: 991px) {
   .order_md_1 {
     order: -1;

@@ -9,25 +9,25 @@
         "items": [
         {
             "id": 1,
-            "value": "2",
+            "value": 2,
             "suffix": "Hours+",
             "description": "Can be lost due to distractions caused by frequent task switching."
         },
         {
             "id": 2,
-            "value": "4",
+            "value": 4,
             "suffix": "Hours",
             "description": "Spent every week regaining focus after each interruption."
         },
         {
             "id": 3,
-            "value": "26%",
-            "suffix": "Increase",
+            "value": 26,
+            "suffix": "% Increase",
             "description": "Higher stress levels among employees exposed to more digital distractions."
         },
         {
             "id": 4,
-            "value": "1200",
+            "value": 1200,
             "suffix": "Times",
             "description": "People switch between apps every day."
         }

@@ -12,6 +12,9 @@
         .content {
             position: relative;
             z-index: 5;
+            * {
+                transition: all .3s linear;
+            }
         }
         .stat_number {
             margin-bottom: 15px;
@@ -42,6 +45,12 @@
             background-repeat: no-repeat !important;
             background-size: cover !important;
         }
+
+        &:hover {
+            .content * {
+                transform: translateY(10px);
+            }
+        }
     
     }
 
@@ -51,6 +60,11 @@
             bottom: 30px;
             padding: 20px;
             right: 0;
+        }
+        &:hover {
+            .content * {
+                transform: translateY(-10px);
+            }
         }
     }
 

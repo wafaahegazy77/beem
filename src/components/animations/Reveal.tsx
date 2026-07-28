@@ -135,7 +135,7 @@ export default function Reveal({
     children,
     animation = "fade-up",
     delay = 0,
-    duration = .8,
+    duration = 1.5,
     once = true,
     amount = .2,
     className,
