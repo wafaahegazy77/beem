@@ -81,13 +81,13 @@ html::-webkit-scrollbar {
 }
 
 html::-webkit-scrollbar-thumb {
-    background: var(--grad1);
+    background: var(--blue);
     -webkit-border-radius: 0;
     border-radius: 5px;
 }
 
 html::-webkit-scrollbar-corner {
-    background: var(--grad1);
+    background: var(--blue);
     border-radius: 5px;
 }
 
@@ -206,7 +206,7 @@ body ul:not(.list-styled) {
             top: 0;
             width: 200%;
             height: 100%;
-            background: var(--grad1);
+            background: var(--blue);
             transition: all 0.4s ease;
             z-index: -1;
         }
@@ -489,7 +489,7 @@ input[type=number] {
             }
 
             &:hover {
-                background: var(--grad1);
+                background: var(--blue);
                 color: #fff;
             }
         }
